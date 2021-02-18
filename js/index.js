@@ -31,12 +31,12 @@ $(document).ready(function () {
 
 
 
-      for (var sec=0;eventos_futuros.length > sec && sec > 3;sec ++){
+      for (var sec=0;eventos_futuros.length > sec && sec < 2;sec ++){
         $("#cont_recientes").append(`
 
         <div class="col-12 m-md-auto mb-3 mb-md-auto col-md-5 bg-light border border-dark rounded p-0 py-3">
         <div class="col-12 border-bottom border-dark  ">
-          <a href=""><h3 class="mx-auto ">${eventos_futuros[sec].nombre}</h3></a>
+          <a href="/detalle.html?id=${eventos_futuros[sec].id}"><h3 class="mx-auto ">${eventos_futuros[sec].nombre}</h3></a>
         </div>
 
         <div class="col-12 py-2 text-justify">
@@ -50,8 +50,26 @@ $(document).ready(function () {
 
       `)}
 
+      for (var sec=0;eventos_pasados.length > sec && sec < 2;sec ++){
+        $("#cont_pasados").append(`
 
-      $("#cont_pasados").append(`Hola`)
+        <div class="col-12 m-md-auto mb-3 mb-md-auto col-md-5 bg-light border border-dark rounded p-0 py-3">
+        <div class="col-12 border-bottom border-dark  ">
+          <a href="detalle.html?id=${eventos_pasados[sec].id}"><h3 class="mx-auto ">${eventos_pasados[sec].nombre}</h3></a>
+        </div>
+
+        <div class="col-12 py-2 text-justify">
+          <p>${eventos_pasados[sec].descripcion}</p>
+          <p> <small class="text-muted">${eventos_pasados[sec].fecha}</small></p>
+        </div>
+
+      </div>
+
+
+
+      `)}
+
+
 
 
       

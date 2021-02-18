@@ -1,17 +1,51 @@
-// Hemos omitido los acentos en los comentarios por compatibilidad
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+var prodId = getParameterByName('id');
+
 
 $(document).ready(function () {
 
-  //Esta es la instruccion para tomar el id del URL detalle.html?id=<identificador>
+  $.get("../info.json", function(data){
+    var evento=[];
 
-  //Carga los datos que estan en el JSON (info.json) usando AJAX
+    data.eventos.forEach(arreglo => {
 
-  //Guarda el resultado en una variable
+      if(arreglo.id == prodId){
+          evento.push(arreglo)
+          console.log(arreglo)
+      }else{return false}
 
-  //Busca el elemento en el arreglo
+    });
 
-  //Crea un string que contenga el HTML que describe el detalle del evento
 
-  //Modifica el DOM agregando el html generado dentro del div con id=evento
 
-});
+
+
+      $("#detalles").append(`
+
+      <div class="col-12 mx-md-auto my-3  col-md-7 bg-light border border-dark rounded p-0 py-3">
+      <div class="col-12 border-bottom border-dark  ">
+      <h3 class="mx-auto ">${evento[0].nombre}</h3>
+      </div>
+
+      <div class="col-12 py-2 text-justify">
+        <p>${evento[0].descripcion}</p>
+        <p>Invitados: ${evento[0].invitados}</p>
+        <p>Precio: ${evento[0].precio}</p>
+        <p> <small class="text-muted">Fecha: ${evento[0].fecha}  Lugar: ${evento[0].lugar}</small></p>
+      </div>
+
+    </div>
+    `)
+
+
+
+
+
+  });
+})
