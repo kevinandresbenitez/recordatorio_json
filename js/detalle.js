@@ -17,7 +17,6 @@ $(document).ready(function () {
 
       if(arreglo.id == prodId){
           evento.push(arreglo)
-          console.log(arreglo)
       }else{return false}
 
     });
@@ -48,4 +47,7 @@ $(document).ready(function () {
 
 
   });
+
 })
+
+
